@@ -1,0 +1,11 @@
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\bin\Debug\GraWzorce.exe.config
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\bin\Debug\GraWzorce.exe
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\bin\Debug\GraWzorce.pdb
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.csprojAssemblyReference.cache
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.Form1.resources
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.Form2.resources
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.Properties.Resources.resources
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.csproj.GenerateResource.cache
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.csproj.CoreCompileInputs.cache
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.exe
+C:\Users\monik\source\repos\GraWzorce\GraWzorce\obj\Debug\GraWzorce.pdb
