@@ -11,12 +11,11 @@ namespace GraWzorce
 
         public override void Eat()
         {
-            Circle food = new Circle
-            {
-                X = snake[snake.Count - 1].X,
-                Y = snake[snake.Count - 1].Y
-            };
-            snake.Add(food);
+            Circle body = (Circle)snake[snake.Count - 1].Clone();
+            if (snake.Count - 1 == 0)
+                body.FLibrary = new PinkFigureLibrary();
+                       
+            snake.Add(body);
 
             Settings.Score += Settings.Points;
             CountScoreLabel.Text = Settings.Score.ToString();
@@ -28,7 +27,8 @@ namespace GraWzorce
             int maxXpos = Width / SquareWidth - 1;
             int maxYpos = Height / SquareHeight - 1;
             Random rnd = new Random();
-            food = new Circle { X = rnd.Next(0, maxXpos), Y = rnd.Next(0, maxYpos) };
+            IFigureLibrary green = new GreenFigureLibrary();
+            food = new Circle (rnd.Next(0, maxXpos), rnd.Next(0, maxYpos),Settings.Size,green);
         }
 
         public override void MovePlayer()
@@ -89,7 +89,8 @@ namespace GraWzorce
             EndLabel.Visible = false;
             new Settings();
             snake.Clear();
-            Circle head = new Circle { X = 10, Y = 5 };
+            IFigureLibrary purple = new PurpleFigureLibrary();
+            Circle head = new Circle(10,5,Settings.Size,purple);
             snake.Add(head);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
@@ -102,31 +103,11 @@ namespace GraWzorce
             if (Settings.GameOver == false)
             {
 
-                Brush snakeColour;
-                for (int i = 0; i < snake.Count; i++)
+                foreach(Circle c in snake)
                 {
-                    if (i == 0)
-                    {
-                        snakeColour = Brushes.HotPink;
-                    }
-                    else
-                    {
-                        snakeColour = Brushes.Purple;
-                    }
-                    canvas.FillEllipse(snakeColour,
-                                        new Rectangle(
-                                            snake[i].X * Settings.Width,
-                                            snake[i].Y * Settings.Height,
-                                            Settings.Width, Settings.Height
-                                            ));
-
-                    canvas.FillEllipse(Brushes.Black,
-                                        new Rectangle(
-                                            food.X * Settings.Width,
-                                            food.Y * Settings.Height,
-                                            Settings.Width, Settings.Height
-                                            ));
+                    c.Draw(canvas);
                 }
+                food.Draw(canvas);
             }
             else
             {

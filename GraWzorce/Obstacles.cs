@@ -6,7 +6,7 @@ namespace GraWzorce
 {
     public class Obstacles : Game
     {
-        private Circle hero = new Circle();
+        private Circle hero;
         private Barriers barrier;
         private readonly Random Rand = new Random();
 
@@ -19,8 +19,8 @@ namespace GraWzorce
 
         public override void GenerateFood()
         {
-            int maxXpos = PictureBox1.Size.Width / Settings.Width;
-            int maxYpos = PictureBox1.Size.Height / Settings.Height;
+            int maxXpos = PictureBox1.Size.Width / Settings.Size;
+            int maxYpos = PictureBox1.Size.Height / Settings.Size;
             int number = Rand.Next(0, maxXpos * maxYpos);
             if (barrier.barriers.ContainsKey(number))
             {
@@ -32,7 +32,8 @@ namespace GraWzorce
                 }
 
             }
-            food = new Circle { X = GetX(number), Y = GetY(number) };
+            IFigureLibrary green = new GreenFigureLibrary();
+            food = new Circle(GetX(number), GetY(number),Settings.Size,green);
         }
 
         public override void MovePlayer()
@@ -85,7 +86,8 @@ namespace GraWzorce
             else if (v == 1)
                 barrier = new StraightBarriers(Width, Height, SquareWidth, SquareHeight);
             BarrierCaller.Do(barrier);
-            hero = new Circle { X = 0, Y = 0 };
+            IFigureLibrary red = new RedFigureLibrary(); 
+            hero = new Circle(0,0,Settings.Size,red);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
         }
@@ -97,32 +99,36 @@ namespace GraWzorce
             if (Settings.GameOver == false)
             {
                 bool value;
+                IFigureLibrary black = new BlackFigureLibrary();
+                IFigureLibrary green = new GreenFigureLibrary();
+                IFigureLibrary red = new RedFigureLibrary();
                 foreach (var k in barrier.barriers.Keys)
                 {
                     if (barrier.barriers.TryGetValue(k, out value))
                     {
                         if (value == true)
                         {
-                            canvas.FillRectangle(Brushes.Black,
-                            new Rectangle(GetX(k) * SquareWidth,
-                            GetY(k) * SquareHeight, SquareWidth,
-                            SquareHeight));
+                            Figure square = new Square(GetX(k), GetY(k), SquareWidth, black);
+                            square.Draw(canvas);
                         }
-
-
                     }
-                    canvas.FillEllipse(Brushes.Orange,
+                    
+                }
+                Figure circleFood = new Circle(food.X, food.Y, SquareWidth, green);
+                circleFood.Draw(canvas);
+                Figure circleHero = new Circle(hero.X, hero.Y, SquareWidth, red);
+                circleHero.Draw(canvas);
+                /*canvas.FillEllipse(food.Colour,
                                         new Rectangle(
                                             food.X * SquareWidth,
                                             food.Y * SquareHeight,
                                             SquareWidth, SquareHeight
                                             ));
-                    canvas.FillRectangle(Brushes.Red, new Rectangle(
-                                            hero.X * SquareWidth,
-                                            hero.Y * SquareHeight,
-                                            SquareWidth, SquareHeight
-                                            ));
-                }
+                canvas.FillRectangle(hero.Colour, new Rectangle(
+                                        hero.X * SquareWidth,
+                                        hero.Y * SquareHeight,
+                                        SquareWidth, SquareHeight
+                                        ));*/
 
             }
             else

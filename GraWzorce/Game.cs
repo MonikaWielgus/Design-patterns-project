@@ -26,8 +26,8 @@ namespace GraWzorce
             PictureBox1 = pb;
             Width = pb.Width;
             Height = pb.Height;
-            SquareWidth = Settings.Width;
-            SquareHeight = Settings.Height;
+            SquareWidth = Settings.Size;
+            SquareHeight = Settings.Size;
         }
 
         protected int GetX(int number)
