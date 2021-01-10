@@ -5,15 +5,15 @@ namespace GraWzorce
     public class Square : Figure
     {
         public Square() : base() { }
-        public Square(int x, int y, int size, IFigureLibrary fl) : base(x, y, size, fl) { }
+        public Square(int x, int y, Details details) : base(x, y, details) { }
 
         public override void Draw(Graphics can)
         {
-            FLibrary.DrawSquare(X,Y,Size,can);
+            details.GetIFigureLibrary().DrawSquare(X,Y,details.GetSize(),can);
         }
         public override IPrototype Clone()
         {
-            IPrototype result = new Square(this.X,this.Y,this.Size,this.FLibrary);
+            IPrototype result = new Square(this.X,this.Y,this.details);
             return result;
         }
     }

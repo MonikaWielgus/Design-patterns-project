@@ -32,8 +32,8 @@ namespace GraWzorce
                 }
 
             }
-            IFigureLibrary green = new GreenFigureLibrary();
-            food = new Circle(GetX(number), GetY(number),Settings.Size,green);
+            Details details = DetailsFactory.getFigureDetails(new GreenFigureLibrary().GetType().ToString());
+            food = new Circle(GetX(number), GetY(number),details);
         }
 
         public override void MovePlayer()
@@ -86,8 +86,8 @@ namespace GraWzorce
             else if (v == 1)
                 barrier = new StraightBarriers(Width, Height, SquareWidth, SquareHeight);
             BarrierCaller.Do(barrier);
-            IFigureLibrary red = new RedFigureLibrary(); 
-            hero = new Circle(0,0,Settings.Size,red);
+            Details details = DetailsFactory.getFigureDetails(new RedFigureLibrary().GetType().ToString());
+            hero = new Circle(0,0,details);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
         }
@@ -100,35 +100,22 @@ namespace GraWzorce
             {
                 bool value;
                 IFigureLibrary black = new BlackFigureLibrary();
-                IFigureLibrary green = new GreenFigureLibrary();
-                IFigureLibrary red = new RedFigureLibrary();
                 foreach (var k in barrier.barriers.Keys)
                 {
                     if (barrier.barriers.TryGetValue(k, out value))
                     {
                         if (value == true)
                         {
-                            Figure square = new Square(GetX(k), GetY(k), SquareWidth, black);
+                            Details detail = DetailsFactory.getFigureDetails(black.GetType().ToString());
+                            Figure square = new Square(GetX(k), GetY(k), detail);
                             square.Draw(canvas);
                         }
                     }
                     
                 }
-                Figure circleFood = new Circle(food.X, food.Y, SquareWidth, green);
-                circleFood.Draw(canvas);
-                Figure circleHero = new Circle(hero.X, hero.Y, SquareWidth, red);
-                circleHero.Draw(canvas);
-                /*canvas.FillEllipse(food.Colour,
-                                        new Rectangle(
-                                            food.X * SquareWidth,
-                                            food.Y * SquareHeight,
-                                            SquareWidth, SquareHeight
-                                            ));
-                canvas.FillRectangle(hero.Colour, new Rectangle(
-                                        hero.X * SquareWidth,
-                                        hero.Y * SquareHeight,
-                                        SquareWidth, SquareHeight
-                                        ));*/
+                food.Draw(canvas);
+
+                hero.Draw(canvas);
 
             }
             else

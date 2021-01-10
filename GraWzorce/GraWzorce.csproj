@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{69DCBFC6-36E3-4800-8062-0F7C1A1F6C7A}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>GraWzorce</RootNamespace>
     <AssemblyName>GraWzorce</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -54,6 +57,8 @@
     <Compile Include="BlockerContext.cs" />
     <Compile Include="Blockers.cs" />
     <Compile Include="Circle.cs" />
+    <Compile Include="Details.cs" />
+    <Compile Include="DetailsFactory.cs" />
     <Compile Include="GreenFigureLibrary.cs" />
     <Compile Include="IFigureLibrary.cs" />
     <Compile Include="GameCreator.cs" />

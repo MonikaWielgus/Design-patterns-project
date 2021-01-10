@@ -5,14 +5,14 @@ namespace GraWzorce
     public class Circle : Figure
     {
         public Circle() : base() { }
-        public Circle(int x, int y, int size, IFigureLibrary fl) : base(x, y, size, fl) { }
+        public Circle(int x, int y, Details details) : base(x, y, details) { }
         public override void Draw(Graphics can)
         {
-            FLibrary.DrawCircle(X,Y,Size,can);
+            details.GetIFigureLibrary().DrawCircle(X,Y,details.GetSize(),can);
         }
         public override IPrototype Clone()
         {
-            IPrototype result = new Circle(this.X, this.Y, this.Size, this.FLibrary);
+            IPrototype result = new Circle(this.X, this.Y, this.details);
             return result;
         }
     }

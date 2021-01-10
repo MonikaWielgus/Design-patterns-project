@@ -13,7 +13,11 @@ namespace GraWzorce
         {
             Circle body = (Circle)snake[snake.Count - 1].Clone();
             if (snake.Count - 1 == 0)
-                body.FLibrary = new PinkFigureLibrary();
+            {
+                Details details = DetailsFactory.getFigureDetails(new PinkFigureLibrary().GetType().ToString());
+                body.details = details;
+            }
+                
                        
             snake.Add(body);
 
@@ -27,8 +31,8 @@ namespace GraWzorce
             int maxXpos = Width / SquareWidth - 1;
             int maxYpos = Height / SquareHeight - 1;
             Random rnd = new Random();
-            IFigureLibrary green = new GreenFigureLibrary();
-            food = new Circle (rnd.Next(0, maxXpos), rnd.Next(0, maxYpos),Settings.Size,green);
+            Details details = DetailsFactory.getFigureDetails(new GreenFigureLibrary().GetType().ToString());
+            food = new Circle (rnd.Next(0, maxXpos), rnd.Next(0, maxYpos),details);
         }
 
         public override void MovePlayer()
@@ -89,8 +93,8 @@ namespace GraWzorce
             EndLabel.Visible = false;
             new Settings();
             snake.Clear();
-            IFigureLibrary purple = new PurpleFigureLibrary();
-            Circle head = new Circle(10,5,Settings.Size,purple);
+            Details details = DetailsFactory.getFigureDetails(new PurpleFigureLibrary().GetType().ToString());
+            Circle head = new Circle(10,5,details);
             snake.Add(head);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
