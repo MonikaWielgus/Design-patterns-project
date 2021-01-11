@@ -10,12 +10,12 @@ namespace GraWzorce
             InitializeComponent();
             new Settings();
             game = g;
-            SetSettings();            
-            
+            SetSettings();
+
         }
         public void SetSettings()
         {
-            game.GetReferences(endLabel, scoreLabel, countScoreLabel,pictureBox1);
+            game.GetReferences(endLabel, scoreLabel, countScoreLabel, pictureBox1);
             gameTimer.Interval = 1000 / Settings.Speed;
             gameTimer.Tick += game.UpdateScreen;
             gameTimer.Start();
@@ -24,7 +24,7 @@ namespace GraWzorce
 
         public void KeyIsDown(object sender, KeyEventArgs e)
         {
-            PressKey pressKey=new PressKey();
+            PressKey pressKey = new PressKey();
             pressKey.Execute(e.KeyCode);
         }
 
@@ -36,7 +36,7 @@ namespace GraWzorce
 
         private void UpdateGraphics(object sender, PaintEventArgs e)
         {
-            game.UpdateGraphics(sender,e);
+            game.UpdateGraphics(sender, e);
         }
     }
 }

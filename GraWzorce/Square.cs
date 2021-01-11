@@ -9,11 +9,11 @@ namespace GraWzorce
 
         public override void Draw(Graphics can)
         {
-            details.GetIFigureLibrary().DrawSquare(X,Y,details.GetSize(),can);
+            details.GetIFigureLibrary().DrawSquare(X, Y, details.GetSize(), can);
         }
         public override IPrototype Clone()
         {
-            IPrototype result = new Square(this.X,this.Y,this.details);
+            IPrototype result = new Square(this.X, this.Y, this.details);
             return result;
         }
     }

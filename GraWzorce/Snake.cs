@@ -17,8 +17,8 @@ namespace GraWzorce
                 Details details = DetailsFactory.getFigureDetails(new PinkFigureLibrary().GetType().ToString());
                 body.details = details;
             }
-                
-                       
+
+
             snake.Add(body);
 
             Settings.Score += Settings.Points;
@@ -32,7 +32,7 @@ namespace GraWzorce
             int maxYpos = Height / SquareHeight - 1;
             Random rnd = new Random();
             Details details = DetailsFactory.getFigureDetails(new GreenFigureLibrary().GetType().ToString());
-            food = new Circle (rnd.Next(0, maxXpos), rnd.Next(0, maxYpos),details);
+            food = new Circle(rnd.Next(0, maxXpos), rnd.Next(0, maxYpos), details);
         }
 
         public override void MovePlayer()
@@ -94,7 +94,7 @@ namespace GraWzorce
             new Settings();
             snake.Clear();
             Details details = DetailsFactory.getFigureDetails(new PurpleFigureLibrary().GetType().ToString());
-            Circle head = new Circle(10,5,details);
+            Circle head = new Circle(10, 5, details);
             snake.Add(head);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
@@ -107,7 +107,7 @@ namespace GraWzorce
             if (Settings.GameOver == false)
             {
 
-                foreach(Circle c in snake)
+                foreach (Circle c in snake)
                 {
                     c.Draw(canvas);
                 }

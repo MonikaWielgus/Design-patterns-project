@@ -18,7 +18,7 @@ namespace GraWzorce
         {
             food = new Circle();
         }
-        public void GetReferences(Label endLabel, Label scoreLabel, Label countScoreLabel,PictureBox pb)
+        public void GetReferences(Label endLabel, Label scoreLabel, Label countScoreLabel, PictureBox pb)
         {
             EndLabel = endLabel;
             ScoreLabel = scoreLabel;
@@ -67,8 +67,8 @@ namespace GraWzorce
             PictureBox1.Invalidate();
         }
         public abstract void StartGame();
-        public abstract void MovePlayer();     
-        public abstract void GenerateFood();       
+        public abstract void MovePlayer();
+        public abstract void GenerateFood();
         public abstract void Eat();
         public void Die()
         {

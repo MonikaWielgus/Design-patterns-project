@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -33,7 +34,7 @@ namespace GraWzorce
 
             }
             Details details = DetailsFactory.getFigureDetails(new GreenFigureLibrary().GetType().ToString());
-            food = new Circle(GetX(number), GetY(number),details);
+            food = new Circle(GetX(number), GetY(number), details);
         }
 
         public override void MovePlayer()
@@ -87,7 +88,7 @@ namespace GraWzorce
                 barrier = new StraightBarriers(Width, Height, SquareWidth, SquareHeight);
             BarrierCaller.Do(barrier);
             Details details = DetailsFactory.getFigureDetails(new RedFigureLibrary().GetType().ToString());
-            hero = new Circle(0,0,details);
+            hero = new Circle(0, 0, details);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
         }
@@ -100,7 +101,7 @@ namespace GraWzorce
             {
                 bool value;
                 IFigureLibrary black = new BlackFigureLibrary();
-                foreach (var k in barrier.barriers.Keys)
+                /*foreach (var k in barrier.barriers.Keys)
                 {
                     if (barrier.barriers.TryGetValue(k, out value))
                     {
@@ -111,7 +112,13 @@ namespace GraWzorce
                             square.Draw(canvas);
                         }
                     }
-                    
+
+                }*/
+                foreach(int k in barrier)
+                {
+                    Details detail = DetailsFactory.getFigureDetails(black.GetType().ToString());
+                    Figure square = new Square(GetX(k), GetY(k), detail);
+                    square.Draw(canvas);
                 }
                 food.Draw(canvas);
 
@@ -125,5 +132,6 @@ namespace GraWzorce
                 EndLabel.Visible = true;
             }
         }
+
     }
 }

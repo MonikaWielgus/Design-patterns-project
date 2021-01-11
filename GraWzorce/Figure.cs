@@ -10,7 +10,7 @@ namespace GraWzorce
         //public int Size { get; set; }
         //public IFigureLibrary FLibrary { get; set; }
 
-        public Figure(){}
+        public Figure() { }
         public Figure(int x, int y, Details details)
         {
             this.X = x;
@@ -28,7 +28,7 @@ namespace GraWzorce
         {
             return details.GetIFigureLibrary();
         }
-       
+
         public abstract IPrototype Clone();
     }
 }

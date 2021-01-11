@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GraWzorce
@@ -20,7 +13,7 @@ namespace GraWzorce
         private void Button1_Click(object sender, EventArgs e)
         {
             GameCreator creator = new SnakeGameCreator();
-            Form2 form=new Form2(creator.FactoryMethod());
+            Form2 form = new Form2(creator.FactoryMethod());
             form.Activate();
             form.Show();
         }

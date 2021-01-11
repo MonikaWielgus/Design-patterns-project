@@ -8,7 +8,7 @@ namespace GraWzorce
         public Circle(int x, int y, Details details) : base(x, y, details) { }
         public override void Draw(Graphics can)
         {
-            details.GetIFigureLibrary().DrawCircle(X,Y,details.GetSize(),can);
+            details.GetIFigureLibrary().DrawCircle(X, Y, details.GetSize(), can);
         }
         public override IPrototype Clone()
         {

@@ -5,7 +5,7 @@ namespace GraWzorce
     {
         public void BlockHere(int i, int j, Barriers b)
         {
-            if (b.CheckIfNotBeyondTheBoard(i, j-1))
+            if (b.CheckIfNotBeyondTheBoard(i, j - 1))
                 if (!b.barriers.ContainsKey(b.RealPlace(i, j - 1)))
                     b.barriers.Add(b.RealPlace(i, j - 1), false);
         }
@@ -14,9 +14,9 @@ namespace GraWzorce
     {
         public void BlockHere(int i, int j, Barriers b)
         {
-            if (b.CheckIfNotBeyondTheBoard(i+1, j - 1))
-                if (!b.barriers.ContainsKey(b.RealPlace(i+1, j - 1)))
-                    b.barriers.Add(b.RealPlace(i+1, j - 1), false); ;
+            if (b.CheckIfNotBeyondTheBoard(i + 1, j - 1))
+                if (!b.barriers.ContainsKey(b.RealPlace(i + 1, j - 1)))
+                    b.barriers.Add(b.RealPlace(i + 1, j - 1), false); ;
         }
     }
     class RightBlocker : IBlockStrategy

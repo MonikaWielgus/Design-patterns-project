@@ -27,7 +27,7 @@ namespace GraWzorce
             int where, x, y;
             Dictionary<int, bool> temp = new Dictionary<int, bool>();
             int v = Rand.Next(0, 2);
-            bool horizontally = true ;
+            bool horizontally = true;
             switch (v)
             {
                 case 0:
@@ -48,7 +48,7 @@ namespace GraWzorce
                     barriers.TryGetValue(key, out bool value);
                     temp.Add(key, value);
                 }
-                
+
                 if (PlaceNextPart(temp, x, y, numberOfParts, horizontally))
                 {
                     done = true;
@@ -70,13 +70,13 @@ namespace GraWzorce
             if (!temp.ContainsKey(RealPlace(x, y)))
             {
                 temp.Add(RealPlace(x, y), true);
-                int nextPlace = RandomNextPlace(x, y,horizontally);
+                int nextPlace = RandomNextPlace(x, y, horizontally);
                 if (nextPlace == -1)
                     return false;
                 else
                 {
                     if (!temp.ContainsKey(nextPlace))
-                        return PlaceNextPart(temp, GetX(nextPlace), GetY(nextPlace), numberOfPartsLeft - 1,horizontally);
+                        return PlaceNextPart(temp, GetX(nextPlace), GetY(nextPlace), numberOfPartsLeft - 1, horizontally);
                     else
                         return false;
                 }
@@ -94,8 +94,8 @@ namespace GraWzorce
             }
             else
             {
-                if (CheckIfNotBeyondTheBoard(x, y+1))
-                    return RealPlace(x, y+1);
+                if (CheckIfNotBeyondTheBoard(x, y + 1))
+                    return RealPlace(x, y + 1);
                 return -1;
 
             }

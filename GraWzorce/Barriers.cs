@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace GraWzorce
@@ -112,6 +113,10 @@ namespace GraWzorce
         public int RealPlace(int x, int y)
         {
             return y * (PbWidth / SettingsWidth) + x;
+        }
+        public IEnumerator GetEnumerator()
+        {
+            return new TrueBarrierIterator(this.barriers);
         }
     }
 }

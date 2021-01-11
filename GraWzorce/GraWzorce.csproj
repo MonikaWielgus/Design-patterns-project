@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BarrierCaller.cs" />
+    <Compile Include="BarrierIterator.cs" />
     <Compile Include="Barriers.cs" />
     <Compile Include="BentBarriers.cs" />
     <Compile Include="BlackFigureLibrary.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="SnakeGameCreator.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="StraightBarriers.cs" />
+    <Compile Include="TrueBarrierIterator.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

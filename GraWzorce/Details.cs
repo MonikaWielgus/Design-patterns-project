@@ -9,7 +9,7 @@
         {
             this.type = type;
             this.size = Settings.Size;
-            LoadIFigureLibrary(this.type);           
+            LoadIFigureLibrary(this.type);
         }
         public int GetSize()
         {
