@@ -5,9 +5,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{69DCBFC6-36E3-4800-8062-0F7C1A1F6C7A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>GraWzorce</RootNamespace>
-    <AssemblyName>GraWzorce</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GameTemplate</RootNamespace>
+    <AssemblyName>GameTemplate</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -110,6 +110,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

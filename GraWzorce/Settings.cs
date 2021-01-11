@@ -3,12 +3,12 @@
     public enum Direction { Up, Down, Left, Right };
     class Settings
     {
-        public static int Size { get; set; }
-        public static int Speed { get; set; }
-        public static int Score { get; set; }
-        public static int Points { get; set; }
-        public static bool GameOver { get; set; }
-        public static Direction direction { get; set; }
+        public static int Size;
+        public static int Speed;
+        public static int Score;
+        public static int Points;
+        public static bool GameOver;
+        public static Direction direction;
 
         public Settings()
         {

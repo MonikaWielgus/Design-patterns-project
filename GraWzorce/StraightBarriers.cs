@@ -4,7 +4,7 @@ namespace GraWzorce
 {
     class StraightBarriers : Barriers
     {
-        public StraightBarriers(int pbWidth, int pbHeight, int settingsWidth, int settingsHeight) : base(pbWidth, pbHeight, settingsWidth, settingsHeight) { }
+        public StraightBarriers(int pbWidth, int pbHeight, int size) : base(pbWidth, pbHeight, size) { }
         protected override void PlaceFourPartObstacle()
         {
             PlaceObstacle(4);
@@ -19,10 +19,10 @@ namespace GraWzorce
             PlaceObstacle(2);
         }
 
-        void PlaceObstacle(int numberOfParts)
+        private void PlaceObstacle(int numberOfParts)
         {
-            int maxXpos = (PbWidth / SettingsWidth) - 1;
-            int maxYpos = (PbHeight / SettingsHeight) - 1;
+            int maxXpos = (PbWidth / ElementSize) - 1;
+            int maxYpos = (PbHeight / ElementSize) - 1;
             bool done = false;
             int where, x, y;
             Dictionary<int, bool> temp = new Dictionary<int, bool>();

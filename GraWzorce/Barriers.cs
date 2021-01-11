@@ -7,18 +7,16 @@ namespace GraWzorce
     abstract class Barriers
     {
         public Dictionary<int, bool> barriers;
-        protected int PbWidth { get; set; }
-        protected int PbHeight { get; set; }
-        protected int SettingsWidth { get; set; }
-        protected int SettingsHeight { get; set; }
+        protected int PbWidth;
+        protected int PbHeight;
+        protected int ElementSize;
         protected readonly Random Rand = new Random();
-        public Barriers(int pbWidth, int pbHeight, int settingsWidth, int settingsHeight)
+        public Barriers(int pbWidth, int pbHeight, int size)
         {
-            barriers = new Dictionary<int, bool>();
-            PbWidth = pbWidth;
-            PbHeight = pbHeight;
-            SettingsWidth = settingsWidth;
-            SettingsHeight = settingsHeight;
+            this.barriers = new Dictionary<int, bool>();
+            this.PbWidth = pbWidth;
+            this.PbHeight = pbHeight;
+            this.ElementSize = size;
         }
         public void GenerateObstacles()
         {
@@ -40,8 +38,8 @@ namespace GraWzorce
         }
         private void PlaceSingleObstacle()
         {
-            int maxXpos = (PbWidth / SettingsWidth) - 1;
-            int maxYpos = (PbHeight / SettingsHeight) - 1;
+            int maxXpos = (PbWidth / ElementSize) - 1;
+            int maxYpos = (PbHeight / ElementSize) - 1;
             bool done = false;
             int where;
             while (!done)
@@ -59,9 +57,9 @@ namespace GraWzorce
         protected void Block()
         {
             BlockerContext context = new BlockerContext();
-            for (int i = 0; i < PbWidth / SettingsWidth; i++)
+            for (int i = 0; i < PbWidth / ElementSize; i++)
             {
-                for (int j = 0; j < PbHeight / SettingsHeight; j++)
+                for (int j = 0; j < PbHeight / ElementSize; j++)
                 {
                     if (barriers.ContainsKey(RealPlace(i, j)) && barriers.TryGetValue(RealPlace(i, j), out bool value))
                     {
@@ -99,24 +97,24 @@ namespace GraWzorce
 
         public bool CheckIfNotBeyondTheBoard(int v, int y)
         {
-            return v >= 0 && v <= PbWidth / SettingsWidth && y >= 0 && y <= PbHeight / SettingsHeight;
+            return v >= 0 && v <= PbWidth / ElementSize && y >= 0 && y <= PbHeight / ElementSize;
         }
 
         public int GetX(int number)
         {
-            return number % (PbWidth / SettingsWidth);
+            return number % (PbWidth / ElementSize);
         }
         public int GetY(int number)
         {
-            return number / (PbWidth / SettingsWidth);
+            return number / (PbWidth / ElementSize);
         }
         public int RealPlace(int x, int y)
         {
-            return y * (PbWidth / SettingsWidth) + x;
+            return y * (PbWidth / ElementSize) + x;
         }
         public IEnumerator GetEnumerator()
         {
-            return new TrueBarrierIterator(this.barriers);
+            return new TrueBarrierIterator(this);
         }
     }
 }

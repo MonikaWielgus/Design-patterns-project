@@ -5,18 +5,17 @@ namespace GraWzorce
 {
     public abstract class Game
     {
-        protected Circle food;
-        protected int Width { get; set; }
-        protected int Height { get; set; }
-        protected int SquareWidth { get; set; }
-        protected int SquareHeight { get; set; }
-        protected Label EndLabel { get; set; }
-        protected Label ScoreLabel { get; set; }
-        protected Label CountScoreLabel { get; set; }
-        protected PictureBox PictureBox1 { get; set; }
+        protected Circle Food;
+        protected int Width;
+        protected int Height;
+        protected int ElementSize;
+        protected Label EndLabel;
+        protected Label ScoreLabel;
+        protected Label CountScoreLabel;
+        protected PictureBox PictureBox1;
         public Game()
         {
-            food = new Circle();
+            Food = new Circle();
         }
         public void GetReferences(Label endLabel, Label scoreLabel, Label countScoreLabel, PictureBox pb)
         {
@@ -26,21 +25,21 @@ namespace GraWzorce
             PictureBox1 = pb;
             Width = pb.Width;
             Height = pb.Height;
-            SquareWidth = Settings.Size;
-            SquareHeight = Settings.Size;
+            ElementSize = Settings.Size;
+            ElementSize = Settings.Size;
         }
 
         protected int GetX(int number)
         {
-            return number % (Width / SquareWidth);
+            return number % (Width / ElementSize);
         }
         protected int GetY(int number)
         {
-            return number / (Width / SquareWidth);
+            return number / (Width / ElementSize);
         }
         protected int RealPlace(int x, int y)
         {
-            return y * (Width / SquareWidth) + x;
+            return y * (Width / ElementSize) + x;
         }
         public abstract void UpdateGraphics(object sender, PaintEventArgs e);
         public void UpdateScreen(object sender, EventArgs e)

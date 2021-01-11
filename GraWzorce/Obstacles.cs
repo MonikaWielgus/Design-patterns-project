@@ -7,8 +7,8 @@ namespace GraWzorce
 {
     public class Obstacles : Game
     {
-        private Circle hero;
-        private Barriers barrier;
+        private Circle Hero;
+        private Barriers Barrier;
         private readonly Random Rand = new Random();
 
         public override void Eat()
@@ -23,9 +23,9 @@ namespace GraWzorce
             int maxXpos = PictureBox1.Size.Width / Settings.Size;
             int maxYpos = PictureBox1.Size.Height / Settings.Size;
             int number = Rand.Next(0, maxXpos * maxYpos);
-            if (barrier.barriers.ContainsKey(number))
+            if (Barrier.barriers.ContainsKey(number))
             {
-                barrier.barriers.TryGetValue(number, out bool value);
+                Barrier.barriers.TryGetValue(number, out bool value);
                 if (value)
                 {
                     GenerateFood();
@@ -34,7 +34,7 @@ namespace GraWzorce
 
             }
             Details details = DetailsFactory.getFigureDetails(new GreenFigureLibrary().GetType().ToString());
-            food = new Circle(GetX(number), GetY(number), details);
+            Food = new Circle(GetX(number), GetY(number), details);
         }
 
         public override void MovePlayer()
@@ -42,36 +42,36 @@ namespace GraWzorce
             switch (Settings.direction)
             {
                 case Direction.Right:
-                    hero.X++;
+                    Hero.X++;
                     break;
                 case Direction.Left:
-                    hero.X--;
+                    Hero.X--;
                     break;
                 case Direction.Up:
-                    hero.Y--;
+                    Hero.Y--;
                     break;
                 case Direction.Down:
-                    hero.Y++;
+                    Hero.Y++;
                     break;
             }
 
-            int maxXpos = (Width / SquareWidth) - 1;
-            int maxYpos = (Height / SquareHeight) - 1;
+            int maxXpos = (Width / ElementSize) - 1;
+            int maxYpos = (Height / ElementSize) - 1;
 
             if (
-                hero.X < 0 || hero.Y < 0 ||
-                hero.X > maxXpos || hero.Y > maxYpos
+                Hero.X < 0 || Hero.Y < 0 ||
+                Hero.X > maxXpos || Hero.Y > maxYpos
                 )
             {
                 Die();
             }
-            if (barrier.barriers.ContainsKey(RealPlace(hero.X, hero.Y)))
+            if (Barrier.barriers.ContainsKey(RealPlace(Hero.X, Hero.Y)))
             {
-                barrier.barriers.TryGetValue(RealPlace(hero.X, hero.Y), out bool value);
+                Barrier.barriers.TryGetValue(RealPlace(Hero.X, Hero.Y), out bool value);
                 if (value)
                     Die();
             }
-            if (hero.X == food.X && hero.Y == food.Y)
+            if (Hero.X == Food.X && Hero.Y == Food.Y)
             {
                 Eat();
             }
@@ -83,12 +83,12 @@ namespace GraWzorce
             int v = Rand.Next(0, 2);
             BarrierCaller barrierCaller = new BarrierCaller();
             if (v == 0)
-                barrier = new BentBarriers(Width, Height, SquareWidth, SquareHeight);
+                Barrier = new BentBarriers(Width, Height, ElementSize);
             else if (v == 1)
-                barrier = new StraightBarriers(Width, Height, SquareWidth, SquareHeight);
-            BarrierCaller.Do(barrier);
+                Barrier = new StraightBarriers(Width, Height, ElementSize);
+            BarrierCaller.Do(Barrier);
             Details details = DetailsFactory.getFigureDetails(new RedFigureLibrary().GetType().ToString());
-            hero = new Circle(0, 0, details);
+            Hero = new Circle(0, 0, details);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
         }
@@ -99,30 +99,17 @@ namespace GraWzorce
 
             if (Settings.GameOver == false)
             {
-                bool value;
                 IFigureLibrary black = new BlackFigureLibrary();
-                /*foreach (var k in barrier.barriers.Keys)
-                {
-                    if (barrier.barriers.TryGetValue(k, out value))
-                    {
-                        if (value == true)
-                        {
-                            Details detail = DetailsFactory.getFigureDetails(black.GetType().ToString());
-                            Figure square = new Square(GetX(k), GetY(k), detail);
-                            square.Draw(canvas);
-                        }
-                    }
 
-                }*/
-                foreach(int k in barrier)
+                foreach(int k in Barrier)
                 {
                     Details detail = DetailsFactory.getFigureDetails(black.GetType().ToString());
                     Figure square = new Square(GetX(k), GetY(k), detail);
                     square.Draw(canvas);
                 }
-                food.Draw(canvas);
+                Food.Draw(canvas);
 
-                hero.Draw(canvas);
+                Hero.Draw(canvas);
 
             }
             else

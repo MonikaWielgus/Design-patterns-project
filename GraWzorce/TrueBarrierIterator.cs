@@ -6,13 +6,15 @@ namespace GraWzorce
 {
     class TrueBarrierIterator : BarrierIterator
     {
+        private Barriers Barrier;
         private Dictionary<int, bool> Values;
-        ArrayList Keys;
+        private ArrayList Keys;
         private int Position=0;
 
-        public TrueBarrierIterator(Dictionary<int, bool> values)
+        public TrueBarrierIterator(Barriers Barrier)
         {
-            this.Values = values;
+            this.Barrier = Barrier;
+            this.Values = this.Barrier.barriers;
             Keys = new ArrayList(Values.Keys);
         }
 

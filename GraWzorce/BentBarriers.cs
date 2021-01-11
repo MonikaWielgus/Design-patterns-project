@@ -4,7 +4,7 @@ namespace GraWzorce
 {
     class BentBarriers : Barriers
     {
-        public BentBarriers(int pbWidth, int pbHeight, int settingsWidth, int settingHeight) : base(pbWidth, pbHeight, settingsWidth, settingHeight) { }
+        public BentBarriers(int pbWidth, int pbHeight, int size) : base(pbWidth, pbHeight, size) { }
 
         protected override void PlaceFourPartObstacle()
         {
@@ -21,8 +21,8 @@ namespace GraWzorce
         }
         private void PlaceObstacle(int numberOfParts)
         {
-            int maxXpos = (PbWidth / SettingsWidth) - 1;
-            int maxYpos = (PbHeight / SettingsHeight) - 1;
+            int maxXpos = (PbWidth / ElementSize) - 1;
+            int maxYpos = (PbHeight / ElementSize) - 1;
             bool done = false;
             int where, x, y;
             Dictionary<int, bool> temp = new Dictionary<int, bool>();

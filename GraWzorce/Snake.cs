@@ -28,11 +28,11 @@ namespace GraWzorce
 
         public override void GenerateFood()
         {
-            int maxXpos = Width / SquareWidth - 1;
-            int maxYpos = Height / SquareHeight - 1;
+            int maxXpos = Width / ElementSize - 1;
+            int maxYpos = Height / ElementSize - 1;
             Random rnd = new Random();
             Details details = DetailsFactory.getFigureDetails(new GreenFigureLibrary().GetType().ToString());
-            food = new Circle(rnd.Next(0, maxXpos), rnd.Next(0, maxYpos), details);
+            Food = new Circle(rnd.Next(0, maxXpos), rnd.Next(0, maxYpos), details);
         }
 
         public override void MovePlayer()
@@ -57,8 +57,8 @@ namespace GraWzorce
                             break;
                     }
 
-                    int maxXpos = Width / SquareWidth - 1;
-                    int maxYpos = Height / SquareHeight - 1;
+                    int maxXpos = Width / ElementSize - 1;
+                    int maxYpos = Height / ElementSize - 1;
 
                     if (
                         snake[i].X < 0 || snake[i].Y < 0 ||
@@ -74,7 +74,7 @@ namespace GraWzorce
                             Die();
                         }
                     }
-                    if (snake[0].X == food.X && snake[0].Y == food.Y)
+                    if (snake[0].X == Food.X && snake[0].Y == Food.Y)
                     {
                         Eat();
                     }
@@ -98,6 +98,7 @@ namespace GraWzorce
             snake.Add(head);
             CountScoreLabel.Text = Settings.Score.ToString();
             GenerateFood();
+
         }
 
         public override void UpdateGraphics(object sender, PaintEventArgs e)
@@ -111,7 +112,7 @@ namespace GraWzorce
                 {
                     c.Draw(canvas);
                 }
-                food.Draw(canvas);
+                Food.Draw(canvas);
             }
             else
             {
